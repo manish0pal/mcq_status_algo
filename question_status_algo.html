@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mcq Question Status</title>
+    <link rel="stylesheet" href="qstyle.css">
+    <script>
+        //question data
+        const questiondata = [
+            {
+                qid:1,
+                status:null
+            },
+            {
+                qid:2,
+                status:null
+            },
+            {
+                qid:3,
+                status:null
+            },
+            {
+                qid:4,
+                status:null
+            },
+            {
+                qid:5,
+                status:null
+            },
+            {
+                qid:6,
+                status:null
+            },
+         
+        ];
+      
+        const qstatus ={};
+        
+        //imp variable 
+        let current_q_index = 0;
+        let current_qid = questiondata[0].qid;
+        </script>
+</head>
+<body>
+    <div id="container"></div>
+
+    <div class="main">
+        <div class="question_details">
+    
+            <form name="radio_group">
+                <h1 id="h_qid"></h1>
+                <label>
+                    <input type="radio" name="radio"/>
+                    <span>A</span>
+                </label>
+                <label>
+                    <input type="radio" name="radio"/>
+                    <span>B</span>
+                </label>
+                <label>
+                    <input type="radio" name="radio"/>
+                    <span>C</span>
+                </label>
+            </form>
+        </div>
+        <div class="question_details">
+            Summary
+            <h6 id="review_text"></h6>
+        </div>
+    </div>
+  
+    <div class="bottom_btn">
+
+        <button type="button" onclick="previosBtn()">Previos</button>
+    <button type="button" onclick="reviewNextBtn()">Review & Next</button>
+    <button type="button" onclick="saveNextBtn()">Save & Next</button>
+  
+</div>
+</body>
+<script src="algo.js"></script>
+
+</html>
