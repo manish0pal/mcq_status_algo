@@ -6,7 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mcq Question Status</title>
     <link rel="stylesheet" href="qstyle.css">
+    <script>
+        const sections = [
+            {
+                secId:1,
+                questionList:[
+                                {
+                                    qid:"q_one_id",
+                                    status:null
+                                },
+                                {
+                                    qid:"q_two_id",
+                                    status:null
+                                },
+                                {
+                                    qid:"q_3_id",
+                                    status:null
+                                },
+                                {
+                                    qid:"q_4_id",
+                                    status:null
+                                },
+                            ]
+            },
+            {
+                secId:2,
+                questionList:[
+                                {
+                                    qid:"sec 2 q id",
+                                    status:null
+                                },
+                                {
+                                    qid:"ad fds",
+                                    status:null
+                                },
+                            ]
+            }
+        ]
+        //be defult first section
+        let section_index = 0;
     
+        //question data  //by defualt section 1 data
+        let questiondata = sections[section_index].questionList
+        const qstatus ={};
+        
+        //imp variable 
+        let current_q_index = 0;
+        let current_qid = questiondata[0].qid;
+        </script>
 </head>
 <body>
     <h6 id="section_display"></h6>
@@ -50,57 +97,7 @@
 
 <button class="reviewBtn" onclick="totalReview()">Review all Section check console</button>
 </body>
-<script>
-    const sections = [
-        {
-            secId:1,
-            questionList:[
-                            {
-                                qid:"q_one_id",
-                                status:null
-                            },
-                            {
-                                qid:"q_two_id",
-                                status:null
-                            },
-                            {
-                                qid:"q_3_id",
-                                status:null
-                            },
-                            {
-                                qid:"q_4_id",
-                                status:null
-                            },
-                        ]
-        },
-        {
-            secId:2,
-            questionList:[
-                            {
-                                qid:"sec 2 q id",
-                                status:null
-                            },
-                            {
-                                qid:"ad fds",
-                                status:null
-                            },
-                        ]
-        }
-    ]
-    //be defult first section
-    let section_index = 0;
-    //heading to display the section
 
-    const sectionHeading = document.getElementById("section_display");
-    sectionHeading.innerHTML = "Section Id: " +sections[section_index].secId;
-    //question data  //by defualt section 1 data
-    let questiondata = sections[section_index].questionList
-    const qstatus ={};
-    
-    //imp variable 
-    let current_q_index = 0;
-    let current_qid = questiondata[0].qid;
-    </script>
 <script src="algo.js"></script>
 
 </html>

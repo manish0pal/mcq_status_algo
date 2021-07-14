@@ -1,3 +1,9 @@
+
+//heading to display the section
+const sectionHeading = document.getElementById("section_display");
+sectionHeading.innerHTML = "Section Id: " +sections[section_index].secId;
+
+
 //add SectionBtn
 const addSectionBtn = (section_id,index)=>{
     var button = document.createElement('input');
@@ -5,34 +11,39 @@ const addSectionBtn = (section_id,index)=>{
     button.id = "sec_"+section_id;
     button.value ="Section "+ (index+1);
     button.onclick = () => {
-
-        //set section question List to count section wise //before updating ui seve 
-        sections[section_index].questionList = questiondata;
-        
-        //set section index to new index that will be open
-        section_index = index;
-
-        sectionHeading.innerHTML = "Section Id: " +sections[section_index].secId;
-
-
-        questiondata = sections[index].questionList;
-        current_q_index = 0;
-        //clear Question Count Button
-        let container = document.getElementById('container');
-        while (container.firstChild) {
-            container.removeChild(container.firstChild);
-        }
-
-
-        //set Question button
-        questiondata.map((value, index) => {
-            addButton(index)
-        });
-        // by defult 1st qustion will be dispayed of section
-        questionDisplay(current_q_index);
+changeSection(index)
+      
     }
     var container = document.getElementById('section');
     container.appendChild(button);
+}
+
+// change section data
+const changeSection = (index)=>{
+  //set section question List to count section wise //before updating ui seve 
+  sections[section_index].questionList = questiondata;
+        
+  //set section index to new index that will be open
+  section_index = index;
+
+  sectionHeading.innerHTML = "Section Id: " +sections[section_index].secId;
+
+
+  questiondata = sections[index].questionList;
+  current_q_index = 0;
+  //clear Question Count Button
+  let container = document.getElementById('container');
+  while (container.firstChild) {
+      container.removeChild(container.firstChild);
+  }
+
+
+  //set Question button
+  questiondata.map((value, index) => {
+      addButton(index)
+  });
+  // by defult 1st qustion will be dispayed of section
+  questionDisplay(current_q_index);
 }
 
 
@@ -60,7 +71,6 @@ sections.map((value,index)=>{
 
 //set Question button
 questiondata.map((value, index) => {
-
     addButton(index)
 });
 
@@ -152,11 +162,8 @@ const questionDisplay = (q_index) => {
         r++;
     }
 
-
     // write code to display question 
     document.getElementById('h_qid').innerHTML = qid;
-
-
 
     //set question as Seen by defualt its open
     updateQuestionSatus('seen', qid);
@@ -189,7 +196,12 @@ const nextBtn = ()=>{
    //go to next 
    else {
        // this question is Last Question
-       console.log("Last Question")
+       if(section_index < sections.length-1){
+        changeSection(section_index+1)
+       } 
+      else{
+        console.log("Last Question of Last Section")
+      } 
       
        
    }
