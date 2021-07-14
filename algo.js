@@ -78,7 +78,7 @@ const updateQuestionSatus = (status, qid) => {
     <tr><td>Seen :</td><td>${qstatus.seen}</td></tr>
     <tr class="unseen"><td> UnSeen :</td><td> ${qstatus.unseen} </td></tr>
     <tr class="answer"><td>Answer : </td><td> ${qstatus.answer} </td></tr>
-    <tr><td>Un-Answer : </td><td> ${qstatus.unanswer} </td></tr>
+    <tr><td>Seen & Un-Answer : </td><td> ${qstatus.unanswer} </td></tr>
     <tr class="review_answer"><td>Review & Answer : </td><td> ${qstatus.review_answer} </td></tr>
     <tr class="review_unanswer"><td>Review & Un-Answer : </td><td> ${qstatus.review_unanswer} </td></tr>
     <tr class="total"><td>Total Ans : </td><td> ${qstatus.review_answer+qstatus.answer} </td></tr>
