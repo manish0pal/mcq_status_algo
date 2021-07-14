@@ -2,7 +2,7 @@
 margin: 1rem;
 display: flex;
 justify-content: center;
-background-color: DodgerBlue;
+background-color: white;
 }
 
 #container > input {
@@ -27,7 +27,7 @@ body {
 font-family: "Inter", sans-serif;
 color: #000021;
 font-size: calc(1em + 0.5vw);
-background-color: #e6e6ef;
+background-color: #fff;
 }
 #h_qid{
     text-align: center;
@@ -48,7 +48,10 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    border-spacing: 0 1em;
   }
+
+
   
   td, th {
     border: 1px solid #dddddd;
@@ -64,12 +67,22 @@ table {
 /* .unanswer{
     background-color: #ff1302;
 } */
+.seen{
+    background-color: #fff;
+}
 .review_unanswer{
-    background-color: #00ccff;
+    background-color: #fff;
+    border: solid #0bf7ff;
+    border-width: 4px;
 }
 .review_answer{
-    background-color: #F5B041;
+    background-color: #ff9385;
+    border: solid #ff0b0b;
+    border-width: 4px;
 }
 .total{
     background-color: lawngreen;
+}
+.unseen{
+    background-color: #efefef;
 }

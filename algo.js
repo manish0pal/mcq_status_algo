@@ -68,16 +68,15 @@ const updateQuestionSatus = (status, qid) => {
 
 
     });
-    //console.log("unseen:",questiondata.length - qstatus.seen)
-    //console.log("question Data:",questiondata)
+
      //to get unanswer we have to minus ans and review and ans
-     qstatus.unanswer = questiondata.length-qstatus.answer-qstatus.review_answer;
+     qstatus.unanswer = qstatus.seen-qstatus.answer-qstatus.review_answer;
      qstatus.unseen = questiondata.length-qstatus.seen;
     document.getElementById("review_text").innerHTML =
     `
     <table>
     <tr><td>Seen :</td><td>${qstatus.seen}</td></tr>
-    <tr><td> UnSeen :</td><td> ${qstatus.unseen} </td></tr>
+    <tr class="unseen"><td> UnSeen :</td><td> ${qstatus.unseen} </td></tr>
     <tr class="answer"><td>Answer : </td><td> ${qstatus.answer} </td></tr>
     <tr><td>Un-Answer : </td><td> ${qstatus.unanswer} </td></tr>
     <tr class="review_answer"><td>Review & Answer : </td><td> ${qstatus.review_answer} </td></tr>
@@ -181,3 +180,6 @@ const reviewNextBtn = () => {
     }
     nextBtn();
 }
+
+// add badge for review
+
