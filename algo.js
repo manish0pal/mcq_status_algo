@@ -1,3 +1,42 @@
+//add SectionBtn
+const addSectionBtn = (section_id,index)=>{
+    var button = document.createElement('input');
+    button.type = 'button';
+    button.id = "sec_"+section_id;
+    button.value ="Section "+ (index+1);
+    button.onclick = () => {
+
+        //set section question List to count section wise //before updating ui seve 
+        sections[section_index].questionList = questiondata;
+        
+        //set section index to new index that will be open
+        section_index = index;
+
+        sectionHeading.innerHTML = "Section Id: " +sections[section_index].secId;
+
+
+        questiondata = sections[index].questionList;
+        current_q_index = 0;
+        //clear Question Count Button
+        let container = document.getElementById('container');
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+
+
+        //set Question button
+        questiondata.map((value, index) => {
+            addButton(index)
+        });
+        // by defult 1st qustion will be dispayed of section
+        questionDisplay(current_q_index);
+    }
+    var container = document.getElementById('section');
+    container.appendChild(button);
+}
+
+
+
 //add Question Count Button
 const addButton = (q_index) => {
     var button = document.createElement('input');
@@ -11,10 +50,21 @@ const addButton = (q_index) => {
     container.appendChild(button);
 }
 
+
+
+
+//set Section Button
+sections.map((value,index)=>{
+    addSectionBtn(value.secId,index)
+});
+
 //set Question button
 questiondata.map((value, index) => {
+
     addButton(index)
 });
+
+
 
 // Update Question Status // and also add the count
 const updateQuestionSatus = (status, qid) => {
@@ -181,5 +231,62 @@ const reviewNextBtn = () => {
     nextBtn();
 }
 
-// add badge for review
 
+const totalReview= ()=>{
+    //total Question Status
+    let total_question_count = 0;
+    const totalQS = {
+        seen : 0,
+        answer : 0,
+        review_unanswer : 0,
+        review_answer : 0
+    }
+
+    sections.map((val,index)=>{
+
+        val.questionList.map((value,index)=>{
+            total_question_count++;
+            switch (value.status) {
+                case 'seen':
+                    totalQS.seen = totalQS.seen + 1;
+                    break
+                case 'answer':
+                    totalQS.seen = totalQS.seen + 1;
+                    totalQS.answer = totalQS.answer + 1;
+                    break
+                case 'review_unanswer':
+                    totalQS.seen = totalQS.seen + 1;
+                    totalQS.review_unanswer = totalQS.review_unanswer + 1 ;
+                    break
+                case 'review_answer':
+                    totalQS.seen = totalQS.seen + 1;
+                    totalQS.review_answer = totalQS.review_answer + 1;
+                  
+                    break
+            }
+        })
+       
+    })
+     //to get unanswer we have to minus ans and review and ans
+     totalQS.unanswer = totalQS.seen-totalQS.answer-totalQS.review_answer;
+     totalQS.unseen = total_question_count-totalQS.seen;
+
+    console.log( `
+Seen :              ${totalQS.seen}
+
+UnSeen :            ${totalQS.unseen}
+
+Answer :            ${totalQS.answer}
+
+Seen & Un-Answer :  ${totalQS.unanswer}
+
+Review & Answer :   ${totalQS.review_answer}
+
+Review & Un-Answer :${totalQS.review_unanswer}
+
+Total Ans :         ${totalQS.review_answer+totalQS.answer}
+
+Total Review  :     ${totalQS.review_unanswer+totalQS.review_answer}
+
+        `)
+}

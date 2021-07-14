@@ -1,10 +1,26 @@
+body {
+    font-family: "Inter", sans-serif;
+    color: #000021;
+    font-size: calc(1em + 0.5vw);
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    }
 #container{
 margin: 1rem;
 display: flex;
 justify-content: center;
 background-color: white;
 }
-
+#section{
+margin: 1rem;
+display: flex;
+justify-content: center;
+background-color: white;
+}
+#section_display{
+    text-align: center;
+}
 #container > input {
 width: 30px;
 margin: 10px;
@@ -23,12 +39,14 @@ margin: 10px;
 padding: 20px;
 font-size: 30px;
 }
-body {
-font-family: "Inter", sans-serif;
-color: #000021;
-font-size: calc(1em + 0.5vw);
-background-color: #fff;
+
+.reviewBtn{
+    background-color: yellowgreen;
+    margin: 3%;
+    width: 94%;
+    padding: 15px;
 }
+
 #h_qid{
     text-align: center;
 }
@@ -41,9 +59,8 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-margin: 1em;
-
 }
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
