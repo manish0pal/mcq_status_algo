@@ -1,103 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mcq Question Status</title>
-    <link rel="stylesheet" href="qstyle.css">
+    <title>Online Exam</title>
+    <link rel="stylesheet" href="grid.css">
     <script>
         const sections = [
             {
-                secId:1,
-                questionList:[
-                                {
-                                    qid:"q_one_id",
-                                    status:null
-                                },
-                                {
-                                    qid:"q_two_id",
-                                    status:null
-                                },
-                                {
-                                    qid:"q_3_id",
-                                    status:null
-                                },
-                                {
-                                    qid:"q_4_id",
-                                    status:null
-                                },
-                            ]
+                secId: 1,
+                secName: "General English",
+                questionList: [
+                    {
+                        qid: "Who is the King of Gamming World ?",
+                        status: null
+                    },
+                    {
+                        qid: "q_two_id",
+                        status: null
+                    },
+                    {
+                        qid: "q_3_id",
+                        status: null
+                    },
+                    {
+                        qid: "q_4_id",
+                        status: null
+                    },
+                ]
             },
             {
-                secId:2,
-                questionList:[
-                                {
-                                    qid:"sec 2 q id",
-                                    status:null
-                                },
-                                {
-                                    qid:"ad fds",
-                                    status:null
-                                },
-                            ]
+                secId: 2,
+                secName: "Maths",
+                questionList: [
+                    {
+                        qid: "sec 2 q id",
+                        status: null
+                    },
+                    {
+                        qid: "ad fds",
+                        status: null
+                    },
+                ]
+            },
+            {
+                secId: 3,
+                secName: "Logic & Reasoning",
+                questionList: [
+                    {
+                        qid: "sec 3 q id",
+                        status: null
+                    },
+                    {
+                        qid: "l and r ad fds",
+                        status: null
+                    },
+                    {
+                        qid: "l and r ad fds",
+                        status: null
+                    },
+                ]
             }
         ]
         //be defult first section
         let section_index = 0;
-    
+
         //question data  //by defualt section 1 data
         let questiondata = sections[section_index].questionList
-        const qstatus ={};
-        
+        const qstatus = {};
+
         //imp variable 
         let current_q_index = 0;
         let current_qid = questiondata[0].qid;
-        </script>
+    </script>
 </head>
+
 <body>
-    <h6 id="section_display"></h6>
+    <div class="root">
+        <div class="container">
+            <div class="main_panel">
+                <div class="header">
+                    <img class="logo" src="./img/logo.png" />
+                    <h4 class="title">UbroSoft</h4>
+                    <span></span>
+                </div>
+                <div id="section_box" class="section_box">
+                    Sections:
+                    <!-- Button Load as pr json -->
+                </div>
+                <div class="exam_panel">
+                    <div class="exam_head">
+                        <span id="question_no"></span>
+                        <span id="current_section" class="current_section">General English</span>
+                        <div>
+                            <span>Question Paper !</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>Instruction !</span>
+                        </div>
+                    </div>
+                    <div class="exam_question">
+                        <span id="question" class="question"></span>
+                        <div class="options">
 
-    <div id="section">   
-    </div>
-    <div id="container"></div>
+                            <form name="radio_group" class="radio_group">
+                                <label>
+                                    <input type="radio" name="radio" />
+                                    <span>PUBG</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio" />
+                                    <span>Free Fire </span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio" />
+                                    <span>Clash of Clan</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio" />
+                                    <span>Ludo King</span>
+                                </label>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class=" item_7">
+                    <button onclick="previosBtn()" class="bottom_btn save_next">Previous</button>
+                    <button onclick="clearResponse()" class="bottom_btn clear_rsp">Clear Response</button>
+                    <button onclick="reviewNextBtn()" class="bottom_btn mark_review">Mark for Review & Next</button>
+                    <button onclick="saveNextBtn()" class="bottom_btn save_next">Save & Next</button>
+                </div>
+            </div>
+            <div class="side_panel">
+                <div class="timmer"> 15:05 <span class="timmer_value">min</span> </div>
+                <div class="student_detail_box">
+                    <div class="student_detail">
+                        <h6 class="label">Student Name:</h6>
+                        <h6 class="details">Manish Pal</h6>
+                        <br />
+                        <h6 class="label">Student Roll no:</h6>
+                        <h6 class="details">45</h6>
 
-    <div class="main">
-        <div class="question_details">
-    
-            <form name="radio_group">
-                <h1 id="h_qid"></h1>
-                <label>
-                    <input type="radio" name="radio"/>
-                    <span>A</span>
-                </label>
-                <label>
-                    <input type="radio" name="radio"/>
-                    <span>B</span>
-                </label>
-                <label>
-                    <input type="radio" name="radio"/>
-                    <span>C</span>
-                </label>
-            </form>
+                    </div>
+                    <div class="student_img_box">
+                        <img class="student_img" src="./img/face.jpg" />
+                    </div>
+                </div>
+                <div class="question_status_box_heading">
+                    <span class="question_status_heading">Section Wise Details</span>
+                <div class="question_status_box">
+                    <div class="status_box">
+                        <div class="sqr_row">
+                            <span class="square answer"></span>
+                            &nbsp;
+                            <span id="qs_asnwer"></span>
+                        </div>
+                        <span>Answered</span>
+                    </div>
+                    <div class="status_box">
+                        <div class="sqr_row">
+                            <span class="square_boder review_answer"></span>
+                            &nbsp;
+                            <span id="qs_review_asnwer"></span>
+                        </div>
+                        <span>Review & Answered</span>
+                    </div>
+                    <div class="status_box">
+                        <div class="sqr_row">
+                        <span class="square_boder review_unanswer"></span>
+                        &nbsp;
+                        <span id="qs_review_unasnwer"></span>
+                    </div>
+                        <span>Review & UnAnswered</span>
+                    </div>
+                    <div class="status_box">
+                        <div class="sqr_row">
+                            <span class="square seen"></span>
+                            &nbsp;
+                            <span id="qs_unanswer"></span>
+                        </div>
+                       
+                        <span>Seen & UnAnswered</span>
+                    </div>
+                    <div class="status_box">
+                        <div class="sqr_row">
+                            <span class="square seen_w"></span>
+                            &nbsp;
+                            <span id="qs_seen"></span>
+                        </div>
+                        <span>Seen</span>
+                    </div>
+                    <div class="status_box">
+                        <div class="sqr_row">
+                            <span class="square unseen"></span>
+                            &nbsp;
+                            <span id="qs_unseen"></span>
+                        </div>
+                        
+                        <span>Unseen</span>
+                    </div>
+                </div>
+            </div>
+                <div id="seq_box" class="seq_box">
+                    <!-- Add by Json Auto mativ -->
+
+                </div>
+                <div class=" item_7">
+                    <button onclick="totalReview()" class="bottom_btn submit_exam">Submit</button>
+                </div>
+            </div>
+
         </div>
-        <div class="question_details">
-            Summary
-            <h6 id="review_text"></h6>
-        </div>
     </div>
-  
-    <div class="bottom_btn">
 
-        <button type="button" onclick="previosBtn()">Previos</button>
-    <button type="button" onclick="reviewNextBtn()">Review & Next</button>
-    <button type="button" onclick="saveNextBtn()">Save & Next</button>
-  
-</div>
-
-<button class="reviewBtn" onclick="totalReview()">Review all Section check console</button>
 </body>
-
 <script src="algo.js"></script>
 
 </html>

@@ -1,7 +1,6 @@
-
 //heading to display the section
-const sectionHeading = document.getElementById("section_display");
-sectionHeading.innerHTML = "Section Id: " +sections[section_index].secId;
+const sectionHeading = document.getElementById("current_section");
+sectionHeading.innerHTML = sections[section_index].secName;
 
 
 //add SectionBtn
@@ -9,71 +8,67 @@ const addSectionBtn = (section_id,index)=>{
     var button = document.createElement('input');
     button.type = 'button';
     button.id = "sec_"+section_id;
-    button.value ="Section "+ (index+1);
+    button.className = "section_btn";
+    button.value =sections[index].secName;
     button.onclick = () => {
 changeSection(index)
-      
     }
-    var container = document.getElementById('section');
+    let container = document.getElementById('section_box');
     container.appendChild(button);
 }
 
 // change section data
 const changeSection = (index)=>{
-  //set section question List to count section wise //before updating ui seve 
-  sections[section_index].questionList = questiondata;
-        
-  //set section index to new index that will be open
-  section_index = index;
-
-  sectionHeading.innerHTML = "Section Id: " +sections[section_index].secId;
-
-
-  questiondata = sections[index].questionList;
-  current_q_index = 0;
-  //clear Question Count Button
-  let container = document.getElementById('container');
-  while (container.firstChild) {
-      container.removeChild(container.firstChild);
+    //set section question List to count section wise //before updating ui seve 
+    sections[section_index].questionList = questiondata;
+          
+    //set section index to new index that will be open
+    section_index = index;
+  
+    sectionHeading.innerHTML = sections[section_index].secName;
+  
+  
+    questiondata = sections[index].questionList;
+    current_q_index = 0;
+    //clear Question Count Button
+    let seq_box = document.getElementById('seq_box');
+    while (seq_box.firstChild) {
+        seq_box.removeChild(seq_box.firstChild);
+    }
+  
+  
+    //set Question button
+    questiondata.map((value, index) => {
+        addButton(index)
+    });
+    // by defult 1st qustion will be dispayed of section
+    questionDisplay(current_q_index);
   }
-
-
-  //set Question button
-  questiondata.map((value, index) => {
-      addButton(index)
-  });
-  // by defult 1st qustion will be dispayed of section
-  questionDisplay(current_q_index);
-}
-
 
 
 //add Question Count Button
 const addButton = (q_index) => {
-    var button = document.createElement('input');
-    button.type = 'button';
+    let button = document.createElement('a');
     button.id = q_index;
-    button.value = q_index+1;
+    button.innerHTML = q_index+1;
+    button.className="seq_btn";
     button.onclick = () => {
         questionDisplay(q_index);
     }
-    var container = document.getElementById('container');
-    container.appendChild(button);
+    let seq_box = document.getElementById('seq_box');
+    seq_box.appendChild(button);
 }
-
-
-
 
 //set Section Button
 sections.map((value,index)=>{
     addSectionBtn(value.secId,index)
 });
 
+
 //set Question button
 questiondata.map((value, index) => {
     addButton(index)
 });
-
 
 
 // Update Question Status // and also add the count
@@ -83,10 +78,7 @@ const updateQuestionSatus = (status, qid) => {
     qstatus.seen = 0;
     qstatus.answer = 0;
     qstatus.review_unanswer = 0;
-    qstatus.review_answer = 0;
-   
-
-    
+    qstatus.review_answer = 0; 
     questiondata.map((value, index) => {
 
         //firstly update satus
@@ -100,7 +92,6 @@ const updateQuestionSatus = (status, qid) => {
             }
         }
         //update question status value
-       
         switch (value.status) {
             case 'seen':
                 qstatus.seen = qstatus.seen + 1;
@@ -123,7 +114,7 @@ const updateQuestionSatus = (status, qid) => {
         //update Ui of buttons
 
         let q_status_btn = document.getElementById(index);
-        q_status_btn.className = value.status;
+        q_status_btn.className = "seq_btn "+value.status;
 
 
 
@@ -132,43 +123,61 @@ const updateQuestionSatus = (status, qid) => {
      //to get unanswer we have to minus ans and review and ans
      qstatus.unanswer = qstatus.seen-qstatus.answer-qstatus.review_answer;
      qstatus.unseen = questiondata.length-qstatus.seen;
-    document.getElementById("review_text").innerHTML =
+  
+     //update question status UI
+     document.getElementById("qs_asnwer").innerHTML = qstatus.answer;
+     document.getElementById("qs_review_asnwer").innerHTML = qstatus.review_answer;
+     document.getElementById("qs_review_unasnwer").innerHTML = qstatus.review_unanswer;
+     document.getElementById("qs_unanswer").innerHTML = qstatus.unanswer;
+     document.getElementById("qs_seen").innerHTML = qstatus.seen;
+     document.getElementById("qs_unseen").innerHTML = qstatus.unseen;
+
+
+
+     console.clear()
+    console.log(
     `
-    <table>
-    <tr><td>Seen :</td><td>${qstatus.seen}</td></tr>
-    <tr class="unseen"><td> UnSeen :</td><td> ${qstatus.unseen} </td></tr>
-    <tr class="answer"><td>Answer : </td><td> ${qstatus.answer} </td></tr>
-    <tr><td>Seen & Un-Answer : </td><td> ${qstatus.unanswer} </td></tr>
-    <tr class="review_answer"><td>Review & Answer : </td><td> ${qstatus.review_answer} </td></tr>
-    <tr class="review_unanswer"><td>Review & Un-Answer : </td><td> ${qstatus.review_unanswer} </td></tr>
-    <tr class="total"><td>Total Ans : </td><td> ${qstatus.review_answer+qstatus.answer} </td></tr>
-    <tr class="total"><td>Total Review  : </td><td> ${qstatus.review_unanswer+qstatus.review_answer} </td></tr>
-    </table>
-    `;
-    //console.log("question Status:", )
+    Seen : ${qstatus.seen}
+    UnSeen : ${qstatus.unseen} 
+    Answer :  ${qstatus.answer} 
+    Seen & Un-Answer :  ${qstatus.unanswer} 
+    Review & Answer :  ${qstatus.review_answer} 
+    Review & Un-Answer :  ${qstatus.review_unanswer} 
+    Total Ans :  ${qstatus.review_answer+qstatus.answer} 
+    Total Review  :  ${qstatus.review_unanswer+qstatus.review_answer} 
+    `);
+    
 }
 
-// Question to be dislay
-const questionDisplay = (q_index) => {
-    //set Current Question to qid
-    current_q_index = q_index;
-     qid = questiondata[q_index].qid;
-
-    // updateing radio btn to default means null
+  // updateding radio btn to default means null
+  const clearResponse = ()=>{
     let radiobtn = document.forms.radio_group.radio;
     var r = 0;
     while (r < radiobtn.length) {
         radiobtn[r].checked = false;
         r++;
     }
+  }
+
+
+// Question to be dislay
+const questionDisplay = (q_index) => {
+    //set Current Question to qid
+    current_q_index = q_index;
+    qid = questiondata[q_index].qid;
+
+    // updateing radio btn to default means null
+    clearResponse();
 
     // write code to display question 
-    document.getElementById('h_qid').innerHTML = qid;
+    document.getElementById('question').innerHTML = qid;
+    document.getElementById('question_no').innerHTML = "Question No. "+(q_index+1);
+
 
     //set question as Seen by defualt its open
     updateQuestionSatus('seen', qid);
-
 }
+
 
 // by defult 1st qustion will be dispayed
 questionDisplay(current_q_index);
@@ -186,6 +195,7 @@ const checkAnsGiven = () => {
     }
     return formValid;
 }
+
 // 2 bar use ho rha tha islye funtion bna diya ke change karne me easy ho
 const nextBtn = ()=>{
     //check for the next data available or not
@@ -205,18 +215,19 @@ const nextBtn = ()=>{
       
        
    }
-   }
+}
+
    //previsod Btn ONclick
    const previosBtn = () => {
-       if(current_q_index !=0){
-        current_q_index--;
-        questionDisplay(current_q_index)
-       }
-       else{
-           console.log("First Question")
-       }
-  
-   }
+    if(current_q_index !=0){
+     current_q_index--;
+     questionDisplay(current_q_index)
+    }
+    else{
+        console.log("First Question")
+    }
+
+}
 
 // save and next btn onclick
 const saveNextBtn = () => {
@@ -228,7 +239,6 @@ const saveNextBtn = () => {
         updateQuestionSatus("seen", questiondata[current_q_index].qid);
     }
    nextBtn();
-
 }
 
 //revieNext Btn ONclick
@@ -283,6 +293,7 @@ const totalReview= ()=>{
      totalQS.unanswer = totalQS.seen-totalQS.answer-totalQS.review_answer;
      totalQS.unseen = total_question_count-totalQS.seen;
 
+    
     console.log( `
 Seen :              ${totalQS.seen}
 
@@ -297,6 +308,8 @@ Review & Answer :   ${totalQS.review_answer}
 Review & Un-Answer :${totalQS.review_unanswer}
 
 Total Ans :         ${totalQS.review_answer+totalQS.answer}
+
+Total UnAns :       ${(totalQS.seen + totalQS.unseen) - (totalQS.review_answer+totalQS.answer)}
 
 Total Review  :     ${totalQS.review_unanswer+totalQS.review_answer}
 
