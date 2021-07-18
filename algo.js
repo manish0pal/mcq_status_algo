@@ -107,16 +107,12 @@ const updateQuestionSatus = (status, qid) => {
             case 'review_answer':
                 qstatus.seen = qstatus.seen + 1;
                 qstatus.review_answer = qstatus.review_answer + 1;
-              
                 break
         }
 
         //update Ui of buttons
-
         let q_status_btn = document.getElementById(index);
         q_status_btn.className = "seq_btn "+value.status;
-
-
 
     });
 
@@ -131,7 +127,6 @@ const updateQuestionSatus = (status, qid) => {
      document.getElementById("qs_unanswer").innerHTML = qstatus.unanswer;
      document.getElementById("qs_seen").innerHTML = qstatus.seen;
      document.getElementById("qs_unseen").innerHTML = qstatus.unseen;
-
 
 
     console.clear()
