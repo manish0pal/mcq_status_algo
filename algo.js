@@ -134,7 +134,7 @@ const updateQuestionSatus = (status, qid) => {
 
 
 
-     console.clear()
+    console.clear()
     console.log(
     `
     Seen : ${qstatus.seen}
@@ -170,9 +170,33 @@ const questionDisplay = (q_index) => {
     clearResponse();
 
     // write code to display question 
-    document.getElementById('question').innerHTML = qid;
+    let question_opt = questiondata[current_q_index];
+
+    document.getElementById('question').innerHTML = question_opt.q_name;
     document.getElementById('question_no').innerHTML = "Question No. "+(q_index+1);
 
+    // display the options
+    document.getElementById('opt_A').innerHTML = question_opt.opt_A;
+    document.getElementById('opt_B').innerHTML = question_opt.opt_B;
+    document.getElementById('opt_C').innerHTML = question_opt.opt_C;
+    document.getElementById('opt_D').innerHTML = question_opt.opt_D;
+
+    //check the ans is saved if yes to show it
+    let radiobtn = document.forms.radio_group.radio;
+    switch (question_opt.response) {
+        case "A":
+            radiobtn[0].checked = true;
+            break;
+        case "B":
+            radiobtn[1].checked = true;
+            break;
+        case "C":
+            radiobtn[2].checked = true;
+            break;
+        case "D":
+            radiobtn[3].checked = true;
+            break;
+    }
 
     //set question as Seen by defualt its open
     updateQuestionSatus('seen', qid);
@@ -186,14 +210,26 @@ questionDisplay(current_q_index);
 //check the Ans is Given or Not
 const checkAnsGiven = () => {
     var radios = document.getElementsByName("radio");
-    var formValid = false;
-
     var i = 0;
-    while (!formValid && i < radios.length) {
-        if (radios[i].checked) formValid = true;
+    while ( i < radios.length) {
+        if (radios[i].checked)
+        {
+            return radios[i].value;
+        } 
         i++;
     }
-    return formValid;
+    return false;
+    
+}
+
+// saving the response given by the student
+
+const saveResponse = (opt_value)=>{
+    questiondata[current_q_index].response = opt_value;
+    // save to data base in asyn ways 
+
+    
+
 }
 
 // 2 bar use ho rha tha islye funtion bna diya ke change karne me easy ho
@@ -232,11 +268,14 @@ const nextBtn = ()=>{
 // save and next btn onclick
 const saveNextBtn = () => {
     let ans_status_boolen = checkAnsGiven();
-    if (ans_status_boolen) {
-        updateQuestionSatus("answer", questiondata[current_q_index].qid);
+    
+    if (!ans_status_boolen) {
+        updateQuestionSatus("seen", questiondata[current_q_index].qid);
     }
     else {
-        updateQuestionSatus("seen", questiondata[current_q_index].qid);
+        updateQuestionSatus("answer", questiondata[current_q_index].qid);
+        //save the response 
+        saveResponse(ans_status_boolen);
     }
    nextBtn();
 }
@@ -244,11 +283,14 @@ const saveNextBtn = () => {
 //revieNext Btn ONclick
 const reviewNextBtn = () => {
     let ans_status_boolen = checkAnsGiven();
-    if (ans_status_boolen) {
-        updateQuestionSatus("review_answer", questiondata[current_q_index].qid);
+    if (!ans_status_boolen) {
+        updateQuestionSatus("review_unanswer", questiondata[current_q_index].qid);
     }
     else {
-        updateQuestionSatus("review_unanswer", questiondata[current_q_index].qid);
+        updateQuestionSatus("review_answer", questiondata[current_q_index].qid);
+        //save the response 
+        saveResponse(ans_status_boolen);
+        
     }
     nextBtn();
 }

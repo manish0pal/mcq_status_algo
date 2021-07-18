@@ -108,7 +108,7 @@ body{
     margin-left: 2%;
     cursor:pointer;
 }
-.section_btn:active{
+button:active{
     -ms-transform: translateY(2px);
     -webkit-transform: translateY(2px);
     transform: translateY(2px);
