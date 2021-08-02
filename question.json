@@ -1,0 +1,56 @@
+[
+    {
+        "secId": 1,
+        "secName": "General English",
+        "questionList": [
+            {
+                "qid": 1,
+                "q_name":"Who is the King of Gamming World ?",
+                "opt_A":"BGMI",
+                "opt_B":"Free Fire",
+                "opt_C":"Ludo King",
+                "opt_D":"Clash Of Clan",
+                "response":null,
+                "status": null
+            },
+            {
+                "qid": 2,
+                "q_name":"Exam World ?",
+                "opt_A":"UbroSoft",
+                "opt_B":"TCS",
+                "opt_C":"GradeUp",
+                "opt_D":"All of the Above",
+                "response":null,
+                "status": null
+            }
+        
+        ]
+    },
+    {
+        "secId": 2,
+        "secName": "Maths",
+        "questionList": [
+            {
+                "qid": 1,
+                "q_name":"1 + 2 ?",
+                "opt_A":"4",
+                "opt_B":"3",
+                "opt_C":"3.0",
+                "opt_D":"12",
+                "response":null,
+                "status": null
+            },
+            {
+                "qid": 2,
+                "q_name":"4 / 2",
+                "opt_A":"2.0",
+                "opt_B":"2",
+                "opt_C":"1+1",
+                "opt_D":"6",
+                "response":null,
+                "status": null
+            }
+        
+        ]
+    }
+]

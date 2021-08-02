@@ -291,7 +291,6 @@ const reviewNextBtn = () => {
 }
 
 
-const totalReview= ()=>{
     //total Question Status
     let total_question_count = 0;
     const totalQS = {
