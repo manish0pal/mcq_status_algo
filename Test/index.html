@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Exam</title>
+    <style>
+        body{
+    margin: 0;
+    padding: 0;
+    font-family:  Helvetica, sans-serif;
+}
+.root{
+    width: 100%;
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.main_panel{ 
+   width: 77%;
+}
+.side_panel{
+    width: 22%;
+    border-left: dashed #818080 2px;
+    padding-left: 5px;
+}
+
+.exam_panel .exam_head{
+    height: 3.5vh;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
+    background-color: #eeeeee;
+    font-size: 12px;
+    font-weight: 600;
+    justify-content: space-between;
+ }
+
+.exam_panel .exam_question{
+    height: 74vh;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   
+
+}
+.exam_question .question{
+    font-weight: 550;
+}
+.exam_question .options{
+    padding-top: 20px;
+    padding-left: 8px;
+    font-weight: 500;
+}
+.options .radio_group {
+    display: flex;
+    flex-direction: column;
+}
+.options .radio_group label{
+    margin-bottom: 8px;
+}
+.header{
+    height: 7vh;
+   
+    display: flex;
+    justify-content: space-between;
+    border-bottom: dashed #818080 2px;
+}
+
+
+.logo{
+    width: 3.5%;
+    height: 80%;
+    margin-left: 2%;
+}
+.header .title{
+    align-self: center;
+    margin: 0;
+}
+
+.section_box{
+ 
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    height: 6vh;
+}
+
+.section_btn{
+   
+    height: 60%;
+    padding: 0 1em;
+    border-radius: 8px;
+    color:#000;
+    font-size:0.65em;
+    border:0;
+    margin-left: 2%;
+    cursor:pointer;
+}
+button:active{
+    -ms-transform: translateY(2px);
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+    border-bottom: none;
+}
+
+
+.student_detail_box{
+    height: 14vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.student_detail{
+    width: 50%;
+    display: block;
+}
+.student_detail h6{
+    margin: 0;
+   
+}
+.student_detail .label{
+    font-weight: 500;
+    font-size: 10px;
+    color: #808080;
+}
+.student_detail .details{
+    font-size: 15px;
+    font-weight: 900;
+}
+.student_img_box{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.student_img{
+    width: auto;
+    height: 10vh;    
+}
+.question_status_box_heading{
+   height: 25vh;
+}
+.question_status_heading{
+    padding-left: 2%;
+    display: flex;
+    align-items: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #eeeeee;
+    font-size: 12px;
+    font-weight: 600;
+    justify-content: space-between;
+}
+.question_status_box{
+    padding: 5px;
+    font-size: .75rem;
+    font-weight: 400;
+
+}
+.status_box{
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+
+
+.sqr_row{
+    display: flex;
+    flex-direction: row;
+   
+}
+.square {
+    height: 15px;
+    width: 15px;
+  }
+.square_boder{
+    height: 11px;
+    width: 11px;
+}
+
+
+
+.timmer{
+    height: 7vh;
+    font-size: 25px;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: dashed #818080 2px;
+}
+.timmer_value{
+    font-weight: 600;
+    font-size: 12px;
+    color: #474747;
+}
+.seq_box_outer{
+    height: 43.3vh;
+    padding: 10px;
+}
+.seq_box{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.seq_btn{
+    display: flex;
+    text-decoration: none;
+    font-size: 1em;
+    height: 40px;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
+	color:rgb(10, 10, 10);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: .3s;
+    margin: 5px;
+    background-color: #eeeeee;
+   
+}
+
+.seq_btn:active{
+    -ms-transform: translateY(2px);
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+    border-bottom: none;
+}
+.item_7{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 6vh;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    text-align: center;   
+}
+button.bottom_btn {
+    height: 80%;
+    margin-bottom: 5px;
+    margin-right: 1%;
+    padding: 0 1em;
+    border-radius: 8px; 
+    color:#fff;
+    font-size:0.8em;
+    border:0;
+    cursor:pointer;
+    width: 100%;
+    overflow-x: auto;
+  }
+  @media screen and (max-width: 800px) {
+    button.bottom_btn  {
+        font-size:0.5em;
+  }
+}
+
+button.bottom_btn.submit_exam{
+    background-color:#2e7d32;
+
+}
+
+button.bottom_btn.save_next{
+    background-color:#1976d2;
+}
+
+button.bottom_btn.mark_review
+{
+    background-color:#c62828;
+}
+button.bottom_btn.clear_rsp
+{
+    background-color:#839192;
+}
+
+
+.answer{
+    background-color:rgb(166, 253, 131) ;
+}
+.seen_w{
+    background-color: #bdf3ec;
+}
+/* .unanswer{
+    background-color: #ff1302;
+} */
+.seen{
+    background-color:#ff9385;
+}
+.review_unanswer{
+   
+    border-width: 3px;
+    background-color: #ff9385;
+    border: dashed #0200ff;
+   
+}
+.review_answer{
+    border-width: 3px;
+    background-color:  rgb(166, 253, 131);
+    border: dashed #0200ff;
+    
+}
+.total{
+    background-color: lawngreen;
+}
+.unseen{
+    background-color: #acacacb9;
+}
+
+    </style>
+    <script src="./qp.js"></script>
+</head>
+
+<body>
+    <div class="root">
+        <div class="container">
+            <div class="main_panel">
+                <div class="header">
+                    <img class="logo" src="./examlogo.png" alt="logo" />
+                    <h4 class="title" id="examnameHeader"></h4>
+                    <span></span>
+                </div>
+                <div id="section_box" class="section_box">
+                    Sections:
+                    <!-- Button Load as pr json -->
+                </div>
+                <div class="exam_panel">
+                    <div class="exam_head">
+                        <span id="question_no"></span>
+                        <span id="current_section" class="current_section">General English</span>
+                        <div>
+                            <span>Question Paper !</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>Instruction !</span>
+                        </div>
+                    </div>
+                    <div class="exam_question">
+                        <span id="questiontxt" class="question"></span>
+                        <img id="question" src="">
+                        <div class="options">
+
+                            <form name="radio_group" class="radio_group">
+                                <label>
+                                    <input type="radio" name="radio" value="A" />
+                                    <span id="opt_Atxt" class="options"></span>
+                                    <img id="opt_A">
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio"  value="B"/>
+                                    <span id="opt_Btxt" class="options"></span>
+                                    <img id="opt_B">
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio" value="C" />
+                                    <span id="opt_Ctxt" class="options"></span>
+                                    <img  id="opt_C">
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio" value="D" />
+                                    <span id="opt_Dtxt" class="options"></span>
+                                    <img  id="opt_D">
+                                </label>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class=" item_7">
+                    <button onclick="previosBtn()" class="bottom_btn save_next">Previous</button>
+                    <button onclick="clearResponse()" class="bottom_btn clear_rsp">Clear Response</button>
+                    <button onclick="reviewNextBtn()" class="bottom_btn mark_review">Mark for Review & Next</button>
+                    <button onclick="saveNextBtn()" class="bottom_btn save_next">Save & Next</button>
+                </div>
+            </div>
+            <div class="side_panel">
+                <div class="timmer" ><span id="timmer"></span> <span class="timmer_value">min</span> </div>
+                <div class="student_detail_box">
+                    <div class="student_detail">
+                        <h6 class="label">Student Name:</h6>
+                        <h6 class="details" id="candidateName">Manish Pal</h6>
+                        
+                        <h6 class="label">Student Enroll no:</h6>
+                        <h6 class="details" id="candidateEnroll">45</h6>
+
+                    </div>
+                    <div class="student_img_box">
+                        <img class="student_img" id="candidateImage" src="" />
+                    </div>
+                </div>
+                <div class="question_status_box_heading">
+                    <span class="question_status_heading">Section Wise Details</span>
+                <div class="question_status_box">
+                    <table style="width: 100%;">
+                    
+                   <tr>
+                    <td><div class="status_box">
+                        <div class="sqr_row">
+                            <span class="square answer"></span>
+                            &nbsp;
+                            <span id="qs_asnwer"></span>
+                        </div>
+                        <span>Answered</span>
+                    </div>
+                    </td>
+                    <td><div class="status_box">
+                        <div class="sqr_row">
+                            <span class="square_boder review_answer"></span>
+                            &nbsp;
+                            <span id="qs_review_asnwer"></span>
+                        </div>
+                        <span>Review & Answered</span>
+                    </div> </td>
+                </tr>
+                <tr>
+                    <td><div class="status_box">
+                        <div class="sqr_row">
+                        <span class="square_boder review_unanswer"></span>
+                        &nbsp;
+                        <span id="qs_review_unasnwer"></span>
+                    </div>
+                        <span>Review & UnAnswered</span>
+                    </div> </td>
+                    <td><div class="status_box">
+                        <div class="sqr_row">
+                            <span class="square seen"></span>
+                            &nbsp;
+                            <span id="qs_unanswer"></span>
+                        </div>
+                       
+                        <span>Seen & UnAnswered</span>
+                    </div> </td>
+                </tr>
+            <tr>  <td><div class="status_box">
+                        <div class="sqr_row">
+                            <span class="square seen_w"></span>
+                            &nbsp;
+                            <span id="qs_seen"></span>
+                        </div>
+                        <span>Seen</span>
+                    </div> </td>
+                    <td><div class="status_box">
+                        <div class="sqr_row">
+                            <span class="square unseen"></span>
+                            &nbsp;
+                            <span id="qs_unseen"></span>
+                        </div>
+                        
+                        <span>Unseen</span>
+                    </div> </td>
+                </tr>
+                </table>
+                </div>
+            </div>
+            <div class="seq_box_outer">
+                <div id="seq_box" class="seq_box">
+                    <!-- Add by Json Auto mativ -->
+                </div>
+            </div>
+               
+                <div class=" item_7">
+                    <button onclick="totalReview()" class="bottom_btn submit_exam">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script>
+
+    document.getElementById("examnameHeader").innerText = candidateDetail.exam_name;
+    document.getElementById("candidateName").innerText = candidateDetail.candidate_name;
+    document.getElementById("candidateEnroll").innerText = candidateDetail.enrollment_no;
+    document.getElementById("candidateImage").src = "data:image/jpg;base64,"+candidateDetail.candidate_image;
+    startTimer( candidateDetail.exam_duration);
+    //heading to display the section
+var sectionHeading = document.getElementById("current_section");
+var seq_box = document.getElementById('seq_box');
+function mainUI(){
+
+
+sectionHeading.innerHTML = sections[section_index].secName;
+
+//set Section Button
+sections.map(function(value,index){
+    addSectionBtn(value.secId,index)
+});
+//set Question button
+questiondata.map(function(value, index){
+
+    addButton(index)
+});
+
+//timmer
+// startTimer(600);
+
+// by defult 1st qustion will be dispayed
+questionDisplay(current_q_index);
+    
+}
+
+
+
+//add SectionBtn
+function addSectionBtn(section_id,index){
+    var button = document.createElement('input');
+    button.type = 'button';
+    button.id = "sec_"+section_id;
+    button.className = "section_btn";
+    button.value =sections[index].secName;
+    button.onclick = function(){
+changeSection(index)
+    }
+    var container = document.getElementById('section_box');
+    container.appendChild(button);
+}
+
+// change section data
+function changeSection(index){
+    //set section question List to count section wise //before updating ui seve 
+    sections[section_index].questionList = questiondata;
+          
+    //set section index to new index that will be open
+    section_index = index;
+  
+    sectionHeading.innerHTML = sections[section_index].secName;
+  
+  
+    questiondata = sections[index].questionList;
+    current_q_index = 0;
+    //clear Question Count Button
+   
+    while (seq_box.firstChild) {
+        seq_box.removeChild(seq_box.firstChild);
+    }
+  
+  
+    //set Question button
+   
+    questiondata.map(function(value, index){
+      
+       
+        addButton(index)
+      
+    });
+    // by defult 1st qustion will be dispayed of section
+    questionDisplay(current_q_index);
+  }
+
+
+//add Question Count Button
+function addButton  (q_index)  {
+    
+    var button = document.createElement('a');
+    button.id = q_index;
+    button.innerHTML = q_index+1;
+    button.className="seq_btn";
+    button.onclick =function (){
+        questionDisplay(q_index);
+    }
+    seq_box.appendChild(button);
+}
+
+
+
+
+
+
+// start timmer
+function startTimer(duration) {
+    var display = document.getElementById("timmer");
+    var timer = duration, minutes, seconds;
+
+   var timmerInterval = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+            
+        }
+        else if(timer <=0){
+            clearInterval(timmerInterval)
+            display.textContent = "00:00";
+            
+            totalReview()
+        }
+    }, 1000);
+}
+
+
+
+
+
+
+
+
+// Update Question Status // and also add the count
+function updateQuestionSatus(status, qid)  {
+
+    //set question_Status to 0 
+    qstatus.seen = 0;
+    qstatus.answer = 0;
+    qstatus.review_unanswer = 0;
+    qstatus.review_answer = 0; 
+    questiondata.map(function(value, index){
+
+        //firstly update satus
+        if (value.qid === qid) {
+            // only if seen
+            if (status === 'seen' && value.status === null) {
+                value.status = status;
+            }
+            else if (status != 'seen') {
+                value.status = status;
+            }
+        }
+        //update question status value
+        switch (value.status) {
+            case 'seen':
+                qstatus.seen = qstatus.seen + 1;
+                break
+            case 'answer':
+                qstatus.seen = qstatus.seen + 1;
+                qstatus.answer = qstatus.answer + 1;
+                break
+            case 'review_unanswer':
+                qstatus.seen = qstatus.seen + 1;
+                qstatus.review_unanswer = qstatus.review_unanswer + 1 ;
+                break
+            case 'review_answer':
+                qstatus.seen = qstatus.seen + 1;
+                qstatus.review_answer = qstatus.review_answer + 1;
+                break
+        }
+
+        //update Ui of buttons
+        var q_status_btn = document.getElementById(index);
+        q_status_btn.className = "seq_btn "+value.status;
+
+    });
+
+     //to get unanswer we have to minus ans and review and ans
+     qstatus.unanswer = qstatus.seen-qstatus.answer-qstatus.review_answer;
+     qstatus.unseen = questiondata.length-qstatus.seen;
+  
+     //update question status UI
+     document.getElementById("qs_asnwer").innerHTML = qstatus.answer;
+     document.getElementById("qs_review_asnwer").innerHTML = qstatus.review_answer;
+     document.getElementById("qs_review_unasnwer").innerHTML = qstatus.review_unanswer;
+     document.getElementById("qs_unanswer").innerHTML = qstatus.unanswer;
+     document.getElementById("qs_seen").innerHTML = qstatus.seen;
+     document.getElementById("qs_unseen").innerHTML = qstatus.unseen;
+
+
+   // console.clear()
+    // console.log(
+    // `
+    // Seen : ${qstatus.seen}
+    // UnSeen : ${qstatus.unseen} 
+    // Answer :  ${qstatus.answer} 
+    // Seen & Un-Answer :  ${qstatus.unanswer} 
+    // Review & Answer :  ${qstatus.review_answer} 
+    // Review & Un-Answer :  ${qstatus.review_unanswer} 
+    // Total Ans :  ${qstatus.review_answer+qstatus.answer} 
+    // Total Review  :  ${qstatus.review_unanswer+qstatus.review_answer} 
+    // `);
+    
+}
+
+  // updateding radio btn to default means null
+  function clearResponse(){
+    var radiobtn = document.forms.radio_group.radio;
+    var r = 0;
+    while (r < radiobtn.length) {
+        radiobtn[r].checked = false;
+        r++;
+    }
+  }
+
+
+// Question to be dislay
+function questionDisplay (q_index)  {
+    //set Current Question to qid
+    current_q_index = q_index;
+    qid = questiondata[q_index].qid;
+
+    // updateing radio btn to default means null
+    clearResponse();
+
+    // write code to display question 
+    var question_opt = questiondata[current_q_index];
+    document.getElementById('question_no').innerHTML = "Question No. "+(q_index+1);
+    
+
+
+    
+    if(question_opt.q_type=="image"){
+        //clear Text
+        document.getElementById('questiontxt').innerText = "";
+   
+   // clear the options
+   document.getElementById('opt_Atxt').innerText = "";
+   document.getElementById('opt_Btxt').innerText = "";
+   document.getElementById('opt_Ctxt').innerText = "";
+   document.getElementById('opt_Dtxt').innerText = "";
+
+       
+    document.getElementById('question').src = "data:image/jpg;base64,"+question_opt.q_name;
+   
+   // display the options
+   document.getElementById('opt_A').src = "data:image/jpg;base64,"+question_opt.opt_A;
+   document.getElementById('opt_B').src = "data:image/jpg;base64,"+question_opt.opt_B;
+   document.getElementById('opt_C').src = "data:image/jpg;base64,"+question_opt.opt_C;
+   document.getElementById('opt_D').src = "data:image/jpg;base64,"+question_opt.opt_D;
+
+    }
+    else{
+        //clear Image
+        document.getElementById('question').src = "";
+   
+   // clear the options
+   document.getElementById('opt_A').src = "";
+   document.getElementById('opt_B').src = "";
+   document.getElementById('opt_C').src = "";
+   document.getElementById('opt_D').src = "";
+       
+    document.getElementById('questiontxt').innerText = question_opt.q_name;
+   
+    // display the options
+    document.getElementById('opt_Atxt').innerText = question_opt.opt_A;
+    document.getElementById('opt_Btxt').innerText = question_opt.opt_B;
+    document.getElementById('opt_Ctxt').innerText = question_opt.opt_C;
+    document.getElementById('opt_Dtxt').innerText = question_opt.opt_D;
+
+    }
+
+   
+    //check the ans is saved if yes to show it
+    var radiobtn = document.forms.radio_group.radio;
+    switch (question_opt.response) {
+        case "A":
+            radiobtn[0].checked = true;
+            break;
+        case "B":
+            radiobtn[1].checked = true;
+            break;
+        case "C":
+            radiobtn[2].checked = true;
+            break;
+        case "D":
+            radiobtn[3].checked = true;
+            break;
+        default:
+            break;
+    }
+
+    //set question as Seen by defualt its open
+    updateQuestionSatus('seen', qid);
+}
+
+
+
+
+//check the Ans is Given or Not
+function checkAnsGiven  ()  {
+    var radios = document.getElementsByName("radio");
+    var i = 0;
+    while ( i < radios.length) {
+        if (radios[i].checked)
+        {
+            return radios[i].value;
+        } 
+        i++;
+    }
+    return false;
+    
+}
+
+// saving the response given by the student
+
+function saveResponse  (opt_value){
+    questiondata[current_q_index].response = opt_value;
+    
+    //todo save to data base in asyn ways 
+    //examID ,sectionID,QID,respnose,Command
+    var tempResponse =  questiondata[current_q_index];
+    console.log("examID",candidateDetail.exam_id)
+    console.log("sectionID",tempResponse.secId)
+    console.log("QID",tempResponse.qid)
+    console.log("respnose",tempResponse.response)
+    console.log("Command",tempResponse.status)
+
+
+    
+
+}
+
+// 2 bar use ho rha tha islye funtion bna diya ke change karne me easy ho
+function nextBtn  (){
+    //check for the next data available or not
+    if (current_q_index < questiondata.length-1) {
+        current_q_index++;
+        questionDisplay(current_q_index)
+   }
+   //go to next 
+   else {
+       // this question is Last Question
+       if(section_index < sections.length-1){
+        changeSection(section_index+1)
+       } 
+      else{
+        console.log("Last Question of Last Section")
+      } 
+      
+       
+   }
+}
+
+   //previsod Btn ONclick
+   function previosBtn  ()  {
+    if(current_q_index !=0){
+     current_q_index--;
+     questionDisplay(current_q_index)
+    }
+    else{
+        console.log("First Question")
+    }
+
+}
+
+// save and next btn onclick
+function saveNextBtn  ()  {
+    var ans_status_boolen = checkAnsGiven();
+    
+    if (!ans_status_boolen) {
+        updateQuestionSatus("seen", questiondata[current_q_index].qid);
+    }
+    else {
+        updateQuestionSatus("answer", questiondata[current_q_index].qid);
+       
+    }
+     //save the response 
+     saveResponse(ans_status_boolen);
+   nextBtn();
+}
+
+//revieNext Btn ONclick
+function reviewNextBtn  ()  {
+    var ans_status_boolen = checkAnsGiven();
+    if (!ans_status_boolen) {
+        updateQuestionSatus("review_unanswer", questiondata[current_q_index].qid);
+    }
+    else {
+        updateQuestionSatus("review_answer", questiondata[current_q_index].qid);
+       
+        
+    }
+     //save the response 
+     saveResponse(ans_status_boolen);
+    nextBtn();
+}
+
+function totalReview  () {
+    //todo submit the exam
+    //submit btn 
+    //total Question Status
+    var total_question_count = 0;
+    var totalQS = {
+        seen : 0,
+        answer : 0,
+        review_unanswer : 0,
+        review_answer : 0
+    }
+
+    sections.map(function(val,index){
+
+        val.questionList.map(function(value,index){
+            total_question_count++;
+            switch (value.status) {
+                case 'seen':
+                    totalQS.seen = totalQS.seen + 1;
+                    break
+                case 'answer':
+                    totalQS.seen = totalQS.seen + 1;
+                    totalQS.answer = totalQS.answer + 1;
+                    break
+                case 'review_unanswer':
+                    totalQS.seen = totalQS.seen + 1;
+                    totalQS.review_unanswer = totalQS.review_unanswer + 1 ;
+                    break
+                case 'review_answer':
+                    totalQS.seen = totalQS.seen + 1;
+                    totalQS.review_answer = totalQS.review_answer + 1;
+                  
+                    break
+            }
+        })
+       
+    })
+     //to get unanswer we have to minus ans and review and ans
+     totalQS.unanswer = totalQS.seen-totalQS.answer-totalQS.review_answer;
+     totalQS.unseen = total_question_count-totalQS.seen;
+        console.log("Exam Submit");
+    
+//     console.log( `
+// Seen :              ${totalQS.seen}
+
+// UnSeen :            ${totalQS.unseen}
+
+// Answer :            ${totalQS.answer}
+
+// Seen & Un-Answer :  ${totalQS.unanswer}
+
+// Review & Answer :   ${totalQS.review_answer}
+
+// Review & Un-Answer :${totalQS.review_unanswer}
+
+// Total Ans :         ${totalQS.review_answer+totalQS.answer}
+
+// Total UnAns :       ${(totalQS.seen + totalQS.unseen) - (totalQS.review_answer+totalQS.answer)}
+
+// Total Review  :     ${totalQS.review_unanswer+totalQS.review_answer}
+
+//         `)
+
+}
+
+
+var sectionList = []
+var sections = []
+qpack.map(function(val,ind){
+    var sectionID = val.sectionid;
+
+
+    //to add section ID
+    if(sectionList.indexOf(sectionID) ==-1){
+        sectionList.push(sectionID)
+        console.log("val",val.sectionid)
+        sections.push({
+            "secId": val.sectionid,
+        "secName": val.section_name,
+        "questionList": []
+        })
+    }
+    //now add questionList
+    var counter = 0;
+   
+    while(counter< sections.length){
+        
+        if(sections[counter].secId===sectionID){
+            sections[counter].questionList.push({
+                "qid": val.id,
+                "q_name":val.qimg,
+                "q_type":val.questype,
+                "opt_A":val.opa,
+                "opt_B":val.opb,
+                "opt_C":val.opc,
+                "opt_D":val.opd,
+                "response":null,
+                "status": null
+            })
+            break;
+        }
+       
+        counter++;
+      
+    }
+       
+  
+})
+ // //be defult first section
+ var section_index = 0;
+
+ //question data  //by defualt section 1 data
+ var questiondata = sections[section_index].questionList
+ const qstatus = {};
+
+ //imp variable 
+ var current_q_index = 0;
+ var current_qid = questiondata[0].qid;
+mainUI();
+</script>
+
+    
+</html>
