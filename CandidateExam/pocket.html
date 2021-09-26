@@ -1,89 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test PieSocket</title>
-    <style>
-        #chatFormContainer {
-            text-align: center;
-            position: fixed;
-            bottom: 5px;
-            left: 5px;
-            right: 5px;
-        }
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script>
+      const ROOM_ID = "proctor120";
+      const testinguserID = "manishopal";
+   </script>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+   <script defer src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <script src="https://zestech.herokuapp.com/socket.io/socket.io.js" defer></script>
+   <!-- <link rel="stylesheet" href="style.css"> -->
+   <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+  
 
-        #chatFormContainer input {
-            display: inline-block;
-            width: 90%;
-            padding: 20px;
-        }
-    </style>
+    <!-- bootstrapcdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="proctor.css"> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    
+    <script src="onlyscript.js" defer></script>
+  
 </head>
 
-<body>
-    <div id="chatLog">
+<body class="bg-grey">
+   <nav class="navbar navbar-fixed-top">
+       <div class="container-fluid">
+           <div class="navbar-header">
+               <a class="navbar-brand nav_title" href="#">UBROSOFT PROCTOR AREA</a>
+           </div>
+       </div>
+   </nav>
 
-    </div>
-    <div id="chatFormContainer">
-        <form id="chatForm">
-            <input id="chatMessage" placeholder="Type  message and press enter..." type="text">
-        </form>
-    </div>
-    <script>
-        var username = `user_${getRandomNumber()}`
-        var apiKey = 'oCdCMcMPQpbvNjUIzqtvF1d2X2okWpDQj4AwARJuAgtjhzKxVEjQU6IdCjwm';
-        var channelId = 1;
-        var piesocket = new WebSocket(`wss://demo.piesocket.com/v3/${channelId}?api_key=${apiKey}&notify_self`);
 
-        var chatLog = document.getElementById('chatLog');
-        var chatForm = document.getElementById('chatForm');
-        chatForm.addEventListener("submit", sendMessage);
+   <div class="container-fluid" style="margin-top:70px">
+       <div class="row  pt-3" id="candidate_list">
+           <button class="btn btn-success" onclick="userEvent()"> Click Me</button>
+           </div>
+       </div>
 
-        piesocket.onopen = function() {
-            console.log(`Websocket connected`);
-            piesocket.send(JSON.stringify({
-                event: 'new_joining',
-                sender: username,
-            }));
-        }
-        piesocket.onmessage = function(message) {
-            var payload = JSON.parse(message.data);
-            console.log(payload);
+   </div>
 
-            if (payload.sender == username) {
-                payload.sender = "You";
-            }
 
-            if (payload.event == "new_message") {
-
-                //Handle new message
-                chatLog.insertAdjacentHTML('afterend', `<div> ${payload.sender}: ${payload.text} <div>`);
-
-            } else if (payload.event == 'new_joining') {
-
-                //Handle new joining
-                chatLog.insertAdjacentHTML('afterend', `<div> ${payload.sender} joined the chat<div>`);
-
-            }
-        }
-
-        function getRandomNumber() {
-            return Math.floor(Math.random() * 1000);
-        }
-
-        function sendMessage(e) {
-            e.preventDefault();
-
-            var message = document.getElementById('chatMessage').value;
-
-            piesocket.send(JSON.stringify({
-                event: 'new_message',
-                sender: username,
-                text: message
-            }));
-        }
-    </script>
 </body>
+
 </html>
