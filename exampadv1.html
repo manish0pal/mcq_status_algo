@@ -868,7 +868,7 @@
         document.getElementById("candidateName").innerText = candidateDetail.candidateName;
         document.getElementById("candidateEnroll").innerText = candidateDetail.enrollmentNo;
         document.getElementById("candidateImage").src = "data:image/jpg;base64," + candidateDetail.candidateImage;
-         startTimer(120);
+         //startTimer(120);
         //heading to display the section
         var sectionHeading = document.getElementById("current_section");
         var seq_box = document.getElementById('seq_box');
@@ -1016,7 +1016,12 @@
                 display.textContent = hours + ":" + minutes + ":" + seconds +" hour";
                 if(minutes != tempmin){
                    // console.log("min",minutes,"tempmin",tempmin);
-                   window.external.sendTimeEveryMin(timer);
+                    if('sendTimeEveryMin' in window.external){
+                   window.external.sendTimeEveryMin();
+                    }
+                    else{
+                        console.log('No external sendTimeEveryMin');
+                    }
                     tempmin = minutes;
                 }
                 if (--timer < 0) {
@@ -1301,7 +1306,7 @@
 
             //check the ans is saved if yes to show it
             var radiobtn = document.forms.radio_group.radio;
-            for (var i = 0; i++; i < 4) {
+            for (var i = 0;i < 4; i++ ) {
                 if (radiobtn[i].value == question_opt.response) {
                     radiobtn[i].checked = true;
                     break;
@@ -1478,7 +1483,7 @@
         });
 
         //timmer
-        //startTimer(600);
+        startTimer(60);
 
         // by defult 1st qustion will be dispayed
         questionDisplay(current_q_index);
