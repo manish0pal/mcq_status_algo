@@ -1016,10 +1016,9 @@
                 display.textContent = hours + ":" + minutes + ":" + seconds +" hour";
                 if(minutes != tempmin){
                    // console.log("min",minutes,"tempmin",tempmin);
-                    if('sendTimeEveryMin' in window.external){
-                   window.external.sendTimeEveryMin();
-                    }
-                    else{
+                    try {
+                        window.external.sendTimeEveryMin();
+                    } catch (error) {
                         console.log('No external sendTimeEveryMin');
                     }
                     tempmin = minutes;
