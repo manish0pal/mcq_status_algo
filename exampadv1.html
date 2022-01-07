@@ -1017,7 +1017,7 @@
                 if(minutes != tempmin){
                    // console.log("min",minutes,"tempmin",tempmin);
                     try {
-                        window.external.sendTimeEveryMin();
+                        window.external.sendTimeEveryMin(timer);
                     } catch (error) {
                         console.log('No external sendTimeEveryMin');
                     }
