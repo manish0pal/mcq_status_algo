@@ -720,10 +720,10 @@
                                 <button onclick='clearResponse()' class="bottom_btn clear_rsp">Clear Response</button>
                             </td>
                             <td>
-                                <button onclick='reviewNextBtn()' class="bottom_btn mark_review">Mark for Review & Next</button>
+                                <button id="revirenxtbtn" onclick='reviewNextBtn()' class="bottom_btn mark_review">Mark for Review & Next</button>
                             </td>
                             <td>
-                                <button onclick='saveNextBtn()' class="bottom_btn save_next">Save & Next</button>
+                                <button id="savenxtbtn" onclick='saveNextBtn()' class="bottom_btn save_next">Save & Next</button>
                             </td>
                         </tr>
                     </table>
@@ -872,7 +872,8 @@
         //heading to display the section
         var sectionHeading = document.getElementById("current_section");
         var seq_box = document.getElementById('seq_box');
-
+        var savenxtbtn = document.getElementById('savenxtbtn');
+        var revirenxtbtn = document.getElementById('revirenxtbtn');
 
         //add SectionBtn
         function addSectionBtn(section_id, index) {
@@ -961,8 +962,6 @@
             section_index = index;
 
             sectionHeading.innerHTML = sections[section_index].SectionName;
-
-
             questiondata = sections[index].AllSetQuestion;
             current_q_index = 0;
             //clear Question Count Button
@@ -970,7 +969,8 @@
             while (seq_box.firstChild) {
                 seq_box.removeChild(seq_box.firstChild);
             }
-
+            //set Section Button active
+            document.getElementById('sec_'+(index+1)).checked = true;
 
             //set Question button
 
@@ -1364,10 +1364,15 @@
 
             console.log("Answer: ", opt_value)
             //todo save to data base in asyn ways
+            //disable next btn till response save in external db
+            savenxtbtn.disabled = true;
+            revirenxtbtn.disabled = true;
 
             if ('Test' in window.external) {
                 window.external.Test(JSON.stringify(mainQpack));
             }
+            savenxtbtn.disabled = false;
+            revirenxtbtn.disabled = false;
 
             //examID ,sectionID,QID,respnose,Command
 
