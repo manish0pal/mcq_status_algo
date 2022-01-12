@@ -1363,16 +1363,10 @@
             console.log("Command", tempResponse.status)
 
             console.log("Answer: ", opt_value)
-            //todo save to data base in asyn ways
-            //disable next btn till response save in external db
-            savenxtbtn.disabled = true;
-            revirenxtbtn.disabled = true;
 
             if ('Test' in window.external) {
                 window.external.Test(JSON.stringify(mainQpack));
             }
-            savenxtbtn.disabled = false;
-            revirenxtbtn.disabled = false;
 
             //examID ,sectionID,QID,respnose,Command
 
@@ -1401,6 +1395,11 @@
                     console.log("Last Question of Last Section")
                 }
             }
+            //Enable Button now
+            //enable next btn and review btn
+            savenxtbtn.disabled = false;
+            revirenxtbtn.disabled = false;
+
         }
 
         //previsod Btn ONclick
@@ -1417,6 +1416,9 @@
 
         // save and next btn onclick
         function saveNextBtn() {
+            //Disable Save Btn and Review Btn
+            savenxtbtn.disabled = true;
+            revirenxtbtn.disabled = true;
             var ans_status_boolen = checkAnsGiven();
 
             if (!ans_status_boolen) {
@@ -1433,6 +1435,10 @@
 
         //revieNext Btn ONclick
         function reviewNextBtn() {
+            //Disable Save Btn and Review Btn
+            savenxtbtn.disabled = true;
+            revirenxtbtn.disabled = true;
+
             var ans_status_boolen = checkAnsGiven();
             if (!ans_status_boolen) {
                 updateQuestionSatus("review_unanswer", qid);
