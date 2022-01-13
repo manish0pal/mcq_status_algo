@@ -549,16 +549,19 @@
 
             <div id="summarydata" class="modal-content" style="overflow-y:AUTO;height: 600px;">
                 <span id="summaryclose" class="close">&times;</span>
-                <div class="col-sm-12 table-responsive" style="height: 500px;">
+                <div class="col-sm-12 table-responsive" style="height: 300px;">
                     <center><label style="font-size: 1.5em;">Exam Summary</label></center>
-                    <table class="" border=1 width=100% style="text-align: center;">
-                        <thead style="background-color: #59aac2;">
-                         <tr style="height: 80px;">
+                    <br/>
+                    <table  border=1 width=100% style="text-align: center;">
+                        <thead style="background-color: #3B5999;
+                        font-size: 0.7em;
+                        color: #fff;">
+                         <tr style="height: 80px; ">
                           <th>No. Of Questions</th>
                           <th>Answered</th>
-                          <th>Not Answered</th>
-                          <th>Marked For Review</th>
-                          <th>Answered & Marked For Review(will be considered for evaluation)</th>
+                          <th>Seen & Not Answered</th>
+                          <th>Answered &  Marked For Review</th>
+                          <th>UnAnswered & Marked For Review</th>
                           <th>Not Visited</th>
                          </tr>
                         </thead>
@@ -577,8 +580,13 @@
 
                 <div class="col-sm-12" style="border:groove;">
                     <center>
-                    <p style="font-style: italic;">Are you sure to submit the Group? Click 'Yes' to proceed.</p>
-                    <button type="button" style="width:50px;height: 30px;" id="finish" onclick="window.external.ProcessExamFinish();" style="">Finish</button>
+                    <p style="font-style: italic;">Are you sure to submit the Exam? </p>
+                    <button type="button" class="bottom_btn  mark_review"
+                    style="height: 30px;
+                           width: fit-content;"  onclick="closeSummaryModel()" >Cancel</button>
+                    <button type="button" class="bottom_btn  submit_exam"
+                     style="height: 30px;
+                            width: fit-content;"  onclick="lastConfirmationforSubmit();" >Finish</button>
                     </center>
                     <br/>
                 </div>
@@ -1183,7 +1191,15 @@
             document.getElementById("qs_unanswer").innerHTML = totalQS.unanswer;
             document.getElementById("qs_seen").innerHTML = totalQS.seen;
             document.getElementById("qs_unseen").innerHTML = totalQS.unseen;
-                   
+            
+            document.getElementById("ttlquestion").innerHTML = total_question_count;
+            document.getElementById("answered").innerHTML = totalQS.answer;
+            document.getElementById("reviewandanswer").innerHTML = totalQS.review_answer;
+            document.getElementById("markforreview").innerHTML = totalQS.review_unanswer;
+            document.getElementById("notanswer").innerHTML = totalQS.unanswer;
+            // document.getElementById("qs_seen").innerHTML = totalQS.seen;
+            document.getElementById("notvisited").innerHTML = totalQS.unseen;
+
 
             updateSectionWiseData();
             //set question_Status to 0
@@ -1475,7 +1491,13 @@
         }
 
         function openSummary(){
-            document.getElementById('summarymodal').style.display = "block";
+            summarymodal.style.display = "block";
+        }
+
+        function lastConfirmationforSubmit(){
+            if (confirm("Did you really want to submit your exam?")) {
+                submitExam();
+                 } 
         }
 
         function submitExam() {
@@ -1619,8 +1641,12 @@
             qmodal.style.display = "none";
         }
         summaryclose.onclick = function () {
-            summarymodal.style.display = "none";
+            closeSummaryModel();
         }
+        function closeSummaryModel(){
+             summarymodal.style.display = "none";
+        }
+        
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
@@ -1631,6 +1657,11 @@
         window.onclick = function (event) {
             if (event.target == qmodal) {
                 qmodal.style.display = "none";
+            }
+        }
+        window.onclick = function (event) {
+            if (event.target == summarymodal) {
+                summarymodal.style.display = "none";
             }
         }
     </script>
