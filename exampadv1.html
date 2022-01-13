@@ -630,7 +630,7 @@
                                  <h4 class="title" id="examnameHeader"> </h4>
                             </td> -->
                             <td>
-                                <center><img class="logo" id="examlogo" src="C:\Users\LENOVO\Desktop\logo.jpg" alt="logo" /></center>
+                                <center><img class="logo" id="examlogo" src="" alt="logo" /></center>
                             </td>
                         </tr>
                     </table>
@@ -854,7 +854,7 @@
 
 
                 <div class=" item_7">
-                    <button onclick="submitExam();" class="bottom_btn submit_exam">Submit</button>
+                    <button onclick="openSummary();" class="bottom_btn submit_exam">Submit</button>
                 </div>
             </div>
 
@@ -865,7 +865,7 @@
     <script>
 
         //document.getElementById("examnameHeader").innerText = candidateDetail.examName;
-        document.getElementById("examlogo").innerText = "data:image/jpg;base64," + candidateDetail.examLogo;
+        document.getElementById("examlogo").src = "data:image/jpg;base64," + candidateDetail.examLogo;
         document.getElementById("candidateName").innerText = candidateDetail.candidateName;
         document.getElementById("candidateEnroll").innerText = candidateDetail.enrollmentNo;
         document.getElementById("candidateImage").src = "data:image/jpg;base64," + candidateDetail.candidateImage;
@@ -1141,29 +1141,7 @@
             document.getElementById("qs_unanswer").innerHTML = totalQS.unanswer;
             document.getElementById("qs_seen").innerHTML = totalQS.seen;
             document.getElementById("qs_unseen").innerHTML = totalQS.unseen;
-
-            //     console.log( `
-            // Seen :              ${totalQS.seen}
-
-            // UnSeen :            ${totalQS.unseen}
-
-            // Answer :            ${totalQS.answer}
-
-            // Seen & Un-Answer :  ${totalQS.unanswer}
-
-            // Review & Answer :   ${totalQS.review_answer}
-
-            // Review & Un-Answer :${totalQS.review_unanswer}
-
-            // Total Ans :         ${totalQS.review_answer+totalQS.answer}
-
-            // Total UnAns :       ${(totalQS.seen + totalQS.unseen) - (totalQS.review_answer+totalQS.answer)}
-
-            // Total Review  :     ${totalQS.review_unanswer+totalQS.review_answer}
-
-            //         `)
-
-            //end
+                   
 
             updateSectionWiseData();
             //set question_Status to 0
@@ -1454,14 +1432,20 @@
             nextBtn();
         }
 
+        function openSummary(){
+            
+        }
+
         function submitExam() {
 
-            //submit btn
+            //final submit 
             if ('finalsubmit' in window.external) {
                 window.external.finalsubmit(JSON.stringify(mainQpack));
             }
 
         }
+
+
 
 
         var sectionList = []
