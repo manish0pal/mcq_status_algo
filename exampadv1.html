@@ -150,6 +150,7 @@
                .section_btn {
                    margin-top: 1%;
                    height: 60%;
+                   min-height: 24px;
                    padding: 0 1em;
                    border-radius: 8px;
                    color: #000;
@@ -1347,7 +1348,7 @@
                 }
                 i++;
             }
-            return false;
+            return null;
 
         }
 
@@ -1421,7 +1422,7 @@
             revirenxtbtn.disabled = true;
             var ans_status_boolen = checkAnsGiven();
 
-            if (!ans_status_boolen) {
+            if (ans_status_boolen == null) {
                 updateQuestionSatus("seen", qid);
             }
             else {
