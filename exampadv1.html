@@ -1010,7 +1010,6 @@
                 hours = Math.floor(timer / 3600);
                 minutes = Math.floor(timer % 3600 / 60);                 
                 seconds = Math.floor(timer % 3600 % 60);
-
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
 
@@ -1018,7 +1017,8 @@
                 if(minutes != tempmin){
                    // console.log("min",minutes,"tempmin",tempmin);
                     try {
-                        window.external.sendTimeEveryMin(hours+":"+minutes);
+                        //Minute
+                        window.external.sendTimeEveryMin(Math.round(timer/60));
                     } catch (error) {
                         console.log('No external sendTimeEveryMin');
                     }
